@@ -35,6 +35,8 @@ class WelcomeView extends TPage
             $indicator1 = new THtmlRenderer('app/resources/info-box.html');
             $indicator2 = new THtmlRenderer('app/resources/info-box.html');
             $indicator3 = new THtmlRenderer('app/resources/info-box.html');
+            // $indicator4 = new THtmlRenderer('app/resources/info-box.html');
+            $indicator4 = TElement::tag('img', [], ['src' => '/app/images/merbee.png']);//"<img src=\"/app/images/merbee.png\">";//->enableSection('main', ['title' => _t('Programs'), 'icon' => 'code',       'background' => 'green',  'value' => SystemProgram::count()]);
 
             
             $accesses = SystemAccessLog::where('login_year','=',date('Y'))
@@ -131,6 +133,7 @@ class WelcomeView extends TPage
             $html->enableSection('main', ['indicator1' => $indicator1,
                                           'indicator2' => $indicator2,
                                           'indicator3' => $indicator3,
+                                          'indicator4' => $indicator4,
                                           'chart1'     => $stats1 ? $chart1 : TPanelGroup::pack('','No logs'),
                                           'chart2'     => '',
                                           'chart3'     => ''

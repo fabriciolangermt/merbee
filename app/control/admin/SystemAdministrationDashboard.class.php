@@ -24,15 +24,15 @@ class SystemAdministrationDashboard extends TPage
             $html = new THtmlRenderer('app/resources/system_admin_dashboard.html');
             
             TTransaction::open('permission');
-            $indicator1 = new THtmlRenderer('app/resources/info-box.html');
+            // $indicator1 = new THtmlRenderer('app/resources/info-box.html');
             $indicator2 = new THtmlRenderer('app/resources/info-box.html');
             $indicator3 = new THtmlRenderer('app/resources/info-box.html');
             $indicator4 = new THtmlRenderer('app/resources/info-box.html');
             
-            $indicator1->enableSection('main', ['title' => _t('Users'),    'icon' => 'user',       'background' => 'orange', 'value' => SystemUser::count()]);
-            $indicator2->enableSection('main', ['title' => _t('Groups'),   'icon' => 'users',      'background' => 'blue',   'value' => SystemGroup::count()]);
-            $indicator3->enableSection('main', ['title' => _t('Units'),    'icon' => 'university', 'background' => 'purple', 'value' => SystemUnit::count()]);
-            $indicator4->enableSection('main', ['title' => _t('Programs'), 'icon' => 'code',       'background' => 'green',  'value' => SystemProgram::count()]);
+            $indicator1 = TElement::tag('img', [], ['src' => '/app/images/merbee.png']);//"<img src=\"/app/images/merbee.png\">";//->enableSection('main', ['title' => _t('Programs'), 'icon' => 'code',       'background' => 'green',  'value' => SystemProgram::count()]);
+            $indicator2->enableSection('main', ['title' => _t('Users'),    'icon' => 'user',       'background' => 'orange', 'value' => SystemUser::count()]);
+            $indicator3->enableSection('main', ['title' => _t('Groups'),   'icon' => 'users',      'background' => 'blue',   'value' => SystemGroup::count()]);
+            $indicator4->enableSection('main', ['title' => _t('Units'),    'icon' => 'university', 'background' => 'purple', 'value' => SystemUnit::count()]);
             
             $chart1 = new THtmlRenderer('app/resources/google_bar_chart.html');
             $data1 = [];

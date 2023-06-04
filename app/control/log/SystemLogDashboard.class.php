@@ -24,6 +24,7 @@ class SystemLogDashboard extends TPage
             $html = new THtmlRenderer('app/resources/system_log_dashboard.html');
             
             TTransaction::open('log');
+            $indicator1 = TElement::tag('img', [], ['src' => '/app/images/merbee.png']);//"<img src=\"/app/images/merbee.png\">";//->enableSection('main', ['title' => _t('Programs'), 'icon' => 'code',       'background' => 'green',  'value' => SystemProgram::count()]);
             $indicator1 = new THtmlRenderer('app/resources/info-box.html');
             $indicator2 = new THtmlRenderer('app/resources/info-box.html');
             $indicator3 = new THtmlRenderer('app/resources/info-box.html');
