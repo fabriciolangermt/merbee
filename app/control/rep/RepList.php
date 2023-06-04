@@ -26,7 +26,7 @@ class RepList extends TPage
         
         // creates the form
         $this->form = new BootstrapFormBuilder('form_search_Product');
-        $this->form->setFormTitle('Lista de repasse');
+        $this->form->setFormTitle('Lista de distribuição de produtos');
         
         // create the form fields
         $id_part = new TDBUniqueSearch('id_part', 'unit_a', 'TbPart', 'id', 'nome');

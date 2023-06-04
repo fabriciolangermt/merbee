@@ -17,7 +17,7 @@ class RepReg extends TPage
         
         // creates the form
         $this->form = new BootstrapFormBuilder('form_Product');
-        $this->form->setFormTitle('Repasse');
+        $this->form->setFormTitle('Distribuição de produtos');
         $this->form->setClientValidation(true);
         
         // create the form fields

@@ -1,5 +1,5 @@
 <menu>
-    <menuitem label='Repasse'>
+    <menuitem label='Distribuição de produtos'>
         <icon>far:edit fa-fw</icon>
         <action>RepList</action>
     </menuitem>
