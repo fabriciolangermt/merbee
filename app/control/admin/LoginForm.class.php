@@ -67,12 +67,26 @@ class LoginForm extends TPage
         $locker = '<span class="login-avatar"><span class="fa fa-lock"></span></span>';
         $unit   = '<span class="login-avatar"><span class="fa fa-university"></span></span>';
         $lang   = '<span class="login-avatar"><span class="fa fa-globe"></span></span>';
+
+        $row = $this->form->addFields( [
+            TElement::tag('center', [
+                TElement::tag('img', [], [
+                'src' => '/app/images/merbee.png',
+                'style' => 'margin-bottom: 30px'
+            ])], [])
+        ] );
+
+        // $this->form->addContent(["
+        //     <img src=\"/app/images/merbee.png\">
+        // "]);
         
         $row = $this->form->addFields( [$user, $login] );
         $row->layout = ['col-sm-12 display-flex'];
         $row = $this->form->addFields( [$locker, $password] );
         $row->layout = ['col-sm-12 display-flex'];
         $this->form->addFields( [$previous_class, $previous_method, $previous_parameters] );
+
+        
         
         if (!empty($ini['general']['multiunit']) and $ini['general']['multiunit'] == '1')
         {
