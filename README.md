@@ -10,3 +10,8 @@ https://docs.docker.com/engine/install/ubuntu/
 Execucao
 
 docker-compose up
+
+
+Usuario: admin
+Senha: admin
+
