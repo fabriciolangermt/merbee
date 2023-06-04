@@ -1,4 +1,8 @@
 <menu>
+<menuitem label='Dashboard'>
+        <icon>fas:tachometer-alt fa-fw</icon>
+        <action>WelcomeView</action>
+    </menuitem>
     <menuitem label='Distribuição de produtos'>
         <icon>far:edit fa-fw</icon>
         <action>RepList</action>
