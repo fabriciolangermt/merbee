@@ -54,6 +54,9 @@ class RepReg extends TPage
         $tb_rep_item_vl_unt->setNumericMask(2, ',', '.', TRUE);
         $tb_rep_item_vl_tot->setNumericMask(2, ',', '.', TRUE);
 
+        $vl_sld->setNumericMask(2, ',', '.', TRUE);
+        $vl_sld_rest->setNumericMask(2, ',', '.', TRUE);
+
         $this->form->addFields( [ $tb_rep_item_id]);
         $this->form->addFields( [new TLabel('Produto')], [$tb_rep_item_id_item]);
         $this->form->addFields( 
@@ -71,7 +74,7 @@ class RepReg extends TPage
         $this->datagrid->style = 'width: 100%';
         $this->datagrid->makeScrollable();
         $this->datagrid->setHeight( 150 );
-        $this->datagrid->setMutationAction(new TAction([$this, 'onMutationAction']));
+        // $this->datagrid->setMutationAction(new TAction([$this, 'onMutationAction']));
         
         // $this->datagrid->addColumn( new TDataGridColumn('id',  'ID',  'center', '10%') );
         $this->datagrid->addColumn( new TDataGridColumn('item->descr',  'Descrição',  'left',   '40%') );
@@ -222,12 +225,12 @@ class RepReg extends TPage
             
             TDataGrid::replaceRowById('tb_rep_item', $uniqid, $row);
 
-            $vl_tot = self::onMutationAction([]);
-
             $items = TSession::getValue('items');
             $items[$uniqid] = $item;
 
             TSession::setValue('items', $items);
+
+            $vl_tot = self::onMutationAction([]);
 
             $data->tb_rep_item_id          = '';
             $data->tb_rep_item_id_item     = '';
@@ -235,12 +238,21 @@ class RepReg extends TPage
             $data->tb_rep_item_vl_unt      = '';
             $data->tb_rep_item_vl_tot      = '';
 
-            $data->vl_tot = number_format($total, 2, ',', '.');
+            $data->vl_tot = number_format($vl_tot, 2, ',', '.');
+            $data->vl_sld = number_format($data->vl_sld, 2, ',', '.');
+            // $data->vl_tot = $vl_tot;
 
+            $vl_sld_rest = floatval($data->vl_sld) - $vl_tot;
 
-            $data->vl_sld_rest = floatval($data->vl_sld) - $vl_tot;
+            $data->vl_sld_rest = number_format($vl_sld_rest, 2, ',', '.');
+
+            // $this->form->setData($data);
             
             // send data, do not fire change/exit events
+
+            unset($data->id_part);
+            unset($data->vl_sld);
+
             TForm::sendData( 'form_Product', $data, false, false );
 
             TTransaction::close();
@@ -277,9 +289,9 @@ class RepReg extends TPage
             
             // store product
             $object = new TbRep;
-            $object->id_part = $data->id_part;
-            $object->vl_tot  = $data->vl_tot;
-            $object->vl_sld  = $data->vl_sld;
+            $object->id_part      = $data->id_part;
+            $object->vl_tot       = $data->vl_tot;
+            $object->vl_sld       = $data->vl_sld;
             $object->vl_sld_rest  = $data->vl_sld_rest;
             // $object->fromArray( (array) $data);
             $object->store();
@@ -400,8 +412,8 @@ class RepReg extends TPage
             }
         }
 
-        $data = new stdClass();
-        $data->vl_tot = number_format($total, 2, ',', '.');
+        // $data = new stdClass();
+        // $data->vl_tot = number_format($total, 2, ',', '.');
 
         
         
