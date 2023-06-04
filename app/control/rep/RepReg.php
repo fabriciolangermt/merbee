@@ -134,7 +134,7 @@ class RepReg extends TPage
 
                 $data = new stdClass();
 
-                $data->vl_sld = $part->vl_sld;
+                $data->vl_sld = number_format($part->vl_sld, 2, ',', '.');
 
                 TForm::sendData( 'form_Product', $data, false, false );
     
@@ -235,8 +235,10 @@ class RepReg extends TPage
             $data->tb_rep_item_vl_unt      = '';
             $data->tb_rep_item_vl_tot      = '';
 
+            $data->vl_tot = number_format($total, 2, ',', '.');
 
-            $data->vl_sld_rest = $data->vl_sld - $vl_tot;
+
+            $data->vl_sld_rest = floatval($data->vl_sld) - $vl_tot;
             
             // send data, do not fire change/exit events
             TForm::sendData( 'form_Product', $data, false, false );
@@ -394,16 +396,16 @@ class RepReg extends TPage
             foreach ($items as $row)
             {
                 // echo '<pre>';var_dump($row);
-                $total += floatval($row->vl_tot);
+                $total += $row->vl_tot;
             }
         }
 
         $data = new stdClass();
-        $data->vl_tot = $total;
+        $data->vl_tot = number_format($total, 2, ',', '.');
 
         
         
-        TForm::sendData( 'form_Product', $data, false, false );
+        // TForm::sendData( 'form_Product', $data, false, false );
 
         return $total;
 
