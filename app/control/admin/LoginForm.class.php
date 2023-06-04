@@ -76,6 +76,11 @@ class LoginForm extends TPage
             ])], [])
         ] );
 
+        $row = $this->form->addFields( [
+            TElement::tag('center', [
+                TElement::tag('div', ['Usuário: admin<br>Senha: admin'], [])], [])
+        ] );
+
         // $this->form->addContent(["
         //     <img src=\"/app/images/merbee.png\">
         // "]);
