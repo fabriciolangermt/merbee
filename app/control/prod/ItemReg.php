@@ -31,7 +31,7 @@ class ItemReg extends TPage
         // add the form fields
         $this->form->addFields( [new TLabel('ID')],          [$id] );
         $this->form->addFields( [new TLabel('Descrição')], [$descr] );
-        $this->form->addFields( [new TLabel('Estque')],       [$vl_qtd],
+        $this->form->addFields( [new TLabel('Estoque')],       [$vl_qtd],
                                 [new TLabel('Preço')],  [$vl_prc] );
         
         $id->setSize('50%');

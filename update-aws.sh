@@ -13,6 +13,16 @@ printf "7) App (Versao)\n"
 printf "8) Full (Versao)\n"
 read VAR
 
+if [[ $VAR -eq 1 ]]
+then
+    scp -o IdentityFile=/home/fabricio/dev/aws/neocompany.pem -r /home/fabricio/dev/proj/merbee/*.php                 ubuntu@18.230.15.72:/home/ubuntu/app/merbee/
+    scp -o IdentityFile=/home/fabricio/dev/aws/neocompany.pem -r /home/fabricio/dev/proj/merbee/src/app/control/*     ubuntu@18.230.15.72:/home/ubuntu/app/merbee/src/app/control/
+#    scp -o IdentityFile=/home/fabricio/dev/aws/neocompany.pem -r /home/fabricio/dev/proj/merbee/src/app/database/*    ubuntu@18.230.15.72:/home/ubuntu/app/merbee/src/app/database/
+    scp -o IdentityFile=/home/fabricio/dev/aws/neocompany.pem -r /home/fabricio/dev/proj/merbee/src/app/model/*       ubuntu@18.230.15.72:/home/ubuntu/app/merbee/src/app/model/
+#    scp -o IdentityFile=/home/fabricio/dev/aws/neocompany.pem -r /home/fabricio/dev/proj/merbee/src/app/service/*     ubuntu@18.230.15.72:/home/ubuntu/app/merbee/src/app/service/
+fi
+
+
 if [[ $VAR -eq 8 ]]
 then
     scp -o IdentityFile=/home/fabricio/dev/aws/neocompany.pem -r /home/fabricio/dev/proj/merbee/*     ubuntu@18.230.15.72:/home/ubuntu/app/merbee/
